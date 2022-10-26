@@ -1,0 +1,59 @@
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/account.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+<body>
+    <div class="theme-switch-container">
+        <span id="toggle-icon">
+            <span class="toggle-text">Light Mode</span>
+            <i class="far  fa-lightbulb"></i>
+        </span>
+        <label class="theme-switch">
+            <input type="checkbox">
+            <div class="slider round"></div>
+        </label>
+    </div>
+
+    <nav id="nav">
+        <a href="/account">MAIN</a>
+        <a href="/shop">Market-Place</a>
+        <a class="disabled">Transfer</a>
+        <a href="logout">Logout</a>
+    </nav>
+
+    <section id="Transfer">
+        {% for msg in messages%}
+        <h2>{{ msg }}</h2>
+        {% endfor %}
+
+        <div class="Loged-in">
+            <h2>Transfer</h2>
+            <form action="transfer" method="post" id="form">
+                {% csrf_token %}
+                <div class="form-control">
+                    <input type="text"  name="fname" id="toacc" placeholder="to Account number.">
+                </div>
+                <div class="form-control">
+                    <input type="number"  name="amount"  id="amount" placeholder="transger amount (minimum order = 10 CNY)">
+                </div>
+                <div class="form-control">
+                    <input type="password"  name="pin" id="pin" placeholder="Enter your transfer pin">
+                </div>
+                    <input type="hidden" name="user_ref_id" id="user_ref_id" value="{{ request.session.user_ref_id }}">
+                    <input type="hidden" name="ciphertext" id="ciphertext">
+                <button class="submit-btn" type="submit">CONFIRM</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
+    <script src="/static/script.js"></script>
+    <script src="/static/transfer.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+{%load humanize%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/jordan_red.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <img src="https://i.ibb.co/6BW4S97/logo-1.png" alt="">
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="/shop">Market-place</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <section>
+        <div class="container">
+            
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            {% for msg in messages%}
+            <h2>{{ msg }} !!!</h2>
+            {% endfor %}
+            <div class="carousel-container">
+                <div class="carousel">
+                    <div class="item main" id="main-item">
+                        <img src="/static/products/small duffle bag.png" />
+                    </div>
+                </div>
+                <div class="navigation">
+                    <div class="prev nav-btn"><</div>
+                    <div class="next nav-btn">></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        
+
+        <div class="container">
+            <div id="product-detail" class="bottom-part">
+                <h1><i class="fas fa-shopping-cart"></i> Under armour bag</h1>
+                <input id="walletid" value="{{request.session.wallet_available}}" hidden>
+                <input id="price" value="1999" name="price" hidden>
+                <h2 >฿ 1,999</h2>
+                <h5>public at 20 Feb 2021</h5><br>
+                <p>Big comfort and bold design lines.The Jordan MA2 Paris Saint-Germain makes plays on the street with club colours and trim details.Varied textures and modern design lines create a look that connects to Jordan heritage while forging a fresh, new identity.
+
+                    Colour Shown: White/University Red/Black/Midnight Navy
+                    Style: DJ2657-104</p>
+            </div>
+            <div id="book-form" class="bottom-part">
+                <form action="buynow" id="form" method="POST">
+                    {% csrf_token %}
+                    <div class="booking">
+                        <input type="hidden" class="form-control" name="ciphertext" id="ciphertext"/>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder=" * PIN" id="pin"/>
+                        </div>
+                        <button type="submit" class="submit">BUY NOW</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+        
+
+    <section class="sec">
+        <footer id="ft">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-items">
+                        <div class="footer-img">
+                            <a target="_blank"><h2>Facebook</h2></a>
+                            <img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+                        </div>
+                        <!-- <p>Global and regional top charts</p> -->
+                    </div>
+                    <div class="footer-items">
+                        <div class="footer-img">
+                            <a target="_blank"><h2>Twitter</h2></a>
+                            <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDh8fHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="">
+                        </div>
+                    </div>
+                    <div class="footer-items">
+                        <div class="footer-img">
+                            <a  target="_blank"><h2>Instagram</h2></a>
+                            <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGZhY2Vib29rfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="">
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="footer-items">
+                        <div class="footer-img">
+                            <a  target="_blank"><h2>Line</h2></a>
+                            <img src="https://images.unsplash.com/photo-1611746872915-64382b5c76da?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
+    <script src="/static/buynow.js"></script>
+
+</body>
+</html> 

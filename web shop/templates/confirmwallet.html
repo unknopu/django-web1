@@ -1,0 +1,51 @@
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/account.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+<body>
+    <div class="theme-switch-container">
+        <span id="toggle-icon">
+            <span class="toggle-text">Light Mode</span>
+            <i class="far  fa-lightbulb"></i>
+        </span>
+        <label class="theme-switch">
+            <input type="checkbox">
+            <div class="slider round"></div>
+        </label>
+    </div>
+
+    <nav id="nav">
+        <a class="disabled">MAIN</a>
+        <a href="/shop">Market-Place</a>
+        <a href="/transferpage">Transfer</a>
+        <a href="logout">Logout</a>
+    </nav>
+
+    <section id="Transfer">
+        <div class="Loged-in">
+            <h2>Add wallet request</h2>
+            {% if request.session.wallet_request %}
+            <form action="comfirm_add" method="post" id="form"> 
+                {% csrf_token %}
+                <input type="text" value="{{ ref_id }}" id="walletid" name="walletid" hidden>
+                <div class="wallet_request">
+                    <p> Request to for new payment methid @shop</p>
+                    <p> Datetime: {{ date }}</p>
+                </div>
+                <button class="submit-btn" type="submit">CONFIRM ADDING</button>
+            </form>
+            {% endif %}
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
+    <script src="/static/script.js"></script>
+    <script src="/static/payment.js"></script>
+</body>
+</html>

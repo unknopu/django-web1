@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    </head>
+<body>
+    <div class="theme-switch-container">
+        <span id="toggle-icon">
+            <span class="toggle-text">Light Mode</span>
+            <i class="far  fa-lightbulb"></i>
+        </span>
+        <label class="theme-switch">
+            <input type="checkbox">
+            <div class="slider round"></div>
+        </label>
+    </div>
+
+    <nav id="nav">
+        <a href="#" class="disabled">Home Page</a>
+        <a href="/signupp" >Sign-up</a>
+        <a href="/" >Sign-in</a>
+    </nav>
+
+    <section id="signup">
+        {% for msg in messages%}
+        <h2>{{ msg }}</h2>
+        {% endfor %}
+
+        <div class="NoLogin">
+            <h2>Registation Form</h2>
+            <form action="signup" method="post" id="form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-control">
+                    <input type="text"  name="username" placeholder="Input username" id="username">
+                </div>
+                <div class="form-control">
+                    <input type="password"  name="password" placeholder="Password" id="password">
+                </div>
+                <div class="form-control">
+                    <input type="password"  name="re-password" placeholder="Repeat-password" id="re-password">
+                </div>
+                <div class="form-control">
+                    <input type="text"  name="email" placeholder="Email" id="email">
+                </div>
+                <div class="form-control">
+                    <input type="text"  name="idnumber" placeholder="Identity number" id="idnumber">
+                </div>
+                <div class="form-control">
+                    <input type="text"  name="fullname" placeholder="Firstname Lastname" id="fullname">
+                </div>
+                <input type="hidden"  name="ciphertext" placeholder="Firstname Lastname" id="ciphertext">
+
+                <button class="submit-btn" type="submit">SUBMIT</button>
+            </form>
+        </div>
+    </section>
+
+
+    <script src="/static/script.js"></script>
+    <script src="/static/register.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/account.css">
+    <link rel="stylesheet" href="/static/css/view_transaction.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+<body>
+    <div class="theme-switch-container">
+        <span id="toggle-icon">
+            <span class="toggle-text">Light Mode</span>
+            <i class="far  fa-lightbulb"></i>
+        </span>
+        <label class="theme-switch">
+            <input type="checkbox">
+            <div class="slider round"></div>
+        </label>
+    </div>
+
+    <nav id="nav">
+        <a class="/">MAIN</a>
+        <a href="/shop">Market-Place</a>
+        <a href="/transferpage">Transfer</a>
+        <a href="confirmwallet">!</a>
+        <a href="logout">Logout</a>
+    </nav>
+
+    <section id="projects">
+        <h1>transactions</h1>
+        <div class="project-container">
+            <div class="image-container">
+                <div class="column">
+                    <h2>id.</h2>
+                    <h2>type</h2>
+                    <h2>amount</h2>
+                    <h2>time</h2>
+                </div>
+                {% for t in trans %}
+                <div class="column">
+                    <p>{{ t.ref_id }}</p>
+                    <p>{{ t.type }}</p>
+                    <p>{{ t.amount }}</p>
+                    <p>{{ t.time }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
+    <script src="/static/script.js"></script>
+    <script src="/static/deposit.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/static/css/payment.css">
+    
+</head>
+<body>
+
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <img src="https://i.ibb.co/6BW4S97/logo-1.png" alt="">
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="/shop">Shopping</a></li>
+                    <li><a href="/payment" disabled>Payment</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+
+
+    <section>
+        <div class="container">
+            <div class="section-title">
+                {% if request.session.is_login %}
+                <div class="sec-l">
+                    <h1>welcome, {{request.session.username}}</h1>
+                </div>
+                {% else %}
+                <div class="sec-l">
+                    <h1>please login before buying ...</h1>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    
+    <section class="res-sec">
+        {% for msg in messages%}
+        <h2>{{ msg }}</h2>
+        {% endfor %}
+        <br>
+        <br>
+        <div class="res-box">
+            <p>Add your wallet ID.</p>
+            <form action="AddWallet" method="post" id="form">
+                {% csrf_token %}
+                <div class="form-control">
+                    <input type="text"  name="walletid" placeholder="Wallet ID (e.g. f47ac10b-58cc-4372-a567-0e02b2c3d479)" id="walletid">
+                </div>
+                {% if request.session.is_login %}
+                    <button class="buyitem" type="submit">SUBMIT</button>
+                {% else %}
+                    <button class="buyitem" type="submit" disabled>SUBMIT</button>
+                {% endif %}
+            </form>
+        </div>
+    </section>
+
+    <section class="sec">
+        <footer id="ft">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-items">
+                        <div class="footer-img">
+                            <a target="_blank"><h2>Facebook</h2></a>
+                            <img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+                        </div>
+                        <!-- <p>Global and regional top charts</p> -->
+                    </div>
+                    <div class="footer-items">
+                        <div class="footer-img">
+                            <a target="_blank"><h2>Twitter</h2></a>
+                            <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDh8fHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="">
+                        </div>
+                    </div>
+                    <div class="footer-items">
+                        <div class="footer-img">
+                            <a target="_blank"><h2>Instagram</h2></a>
+                            <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGZhY2Vib29rfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="">
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="footer-items">
+                        <div class="footer-img">
+                            <a target="_blank"><h2>Line</h2></a>
+                            <img src="https://images.unsplash.com/photo-1611746872915-64382b5c76da?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+    <script src="/static/payment.js"></script>
+</html>

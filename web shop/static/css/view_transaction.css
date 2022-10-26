@@ -1,0 +1,10 @@
+.column{
+    display: flex;
+}
+.column.refid{
+    overflow: scroll;
+}
+.column h2{
+    margin-right: 2rem;
+    display: inline-block;
+}

@@ -1,0 +1,65 @@
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/account.css">
+    <link rel="stylesheet" href="/static/css/view_transaction.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+<body>
+    <div class="theme-switch-container">
+        <span id="toggle-icon">
+            <span class="toggle-text">Light Mode</span>
+            <i class="far  fa-lightbulb"></i>
+        </span>
+        <label class="theme-switch">
+            <input type="checkbox">
+            <div class="slider round"></div>
+        </label>
+    </div>
+
+    <nav id="nav">
+        <a class="disabled">MAIN</a>
+        <a href="/shop">Market-Place</a>
+        <a href="/transferpage">Transfer</a>
+        <a href="confirmwallet">!</a>
+        <!-- <a href="/history">history</a> -->
+        <a href="logout">Logout</a>
+    </nav>
+
+    <section id="profile">
+        {% for msg in messages%}
+        <h2>{{ msg }}</h2>
+        {% endfor %}
+
+        <div class="Loged-in">
+            <h2>Welcome, {{ request.session.username }}</h2>
+            <div class="detail underline">
+                <i class="fas fa-wallet"> Balance: <h3 class="data-color">¥ {{ request.session.balance | intcomma }}</h3></i>
+            </div>
+            <div class="detail">
+                <p> Account Number: {{ request.session.user_ref_id }}</p>
+            </div>
+            <form action="deposit" id="form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-control">
+                    <input type="number"  name="amount" id="amount" placeholder="Enter your deposit amount (minimum order = 10 CNY)">
+                </div>
+                <div class="form-control">
+                    <input type="password"  name="pin" id="pin" placeholder="Enter your PIN.">
+                </div>
+                    <input type="hidden" name="user_ref_id" id="user_ref_id" value="{{ request.session.user_ref_id }}">
+                    <input type="hidden" name="ciphertext" id="ciphertext">
+                <button class="submit-btn" type="submit">DEPOSIT</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
+    <script src="/static/script.js"></script>
+    <script src="/static/deposit.js"></script>
+</body>
+</html>

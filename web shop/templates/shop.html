@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/static/css/shop.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <img src="https://i.ibb.co/6BW4S97/logo-1.png" alt="">
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="/shop">Shopping</a></li>
+                    <li><a href="/payment">Payment</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    
+
+    <section>
+        
+        <div class="container">
+            <div class="section-title">
+                {% if request.session.is_login %}
+                <div class="sec-l">
+                    <h1>welcome, {{request.session.username}}</h1>
+                </div>
+                {% else %}
+                <div class="sec-l">
+                    <h1>please login before buying ...</h1>
+                </div>
+                {% endif %}
+
+                <div class="sec-r">
+                    <h1 id="walletid">WALLET : {{request.session.wallet_available}}</h1>
+                </div>
+            </div>
+
+            {% for msg in messages%}
+                <h2>{{ msg }} !!!</h2>
+            {% endfor %}
+
+            <div class="section-grid">
+                <div class="sec-items">
+                    <div class="sec-img">
+                        <div class="sec-img-box">
+                            <a href="jordan_red" ><img class="card-img-top" src="/static/products/air jordan.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="sec-info">
+                            <a id="name">Nike Jodan (red)</a>
+                            <div>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="far fa-star"></span>
+                            </div>
+                            <p>฿ 2999</p>
+                    </div>
+                </div>
+
+                <div class="sec-items">
+                    <div class="sec-img">
+                        <div class="sec-img-box">
+                            <a href="bag"><img class="card-img-top" src="/static/products/duffle bag.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="sec-info">
+                            <a>Under armour bag</a>
+                            <div>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="far fa-star checked"></span>
+                                <span class="far fa-star"></span>
+                                <span class="far fa-star"></span>
+                            </div>
+                            <p>฿ 1999</p>
+                    </div>
+                </div>
+
+                <div class="sec-items">
+                    <div class="sec-img">
+                        <div class="sec-img-box">
+                            <a href="bag2"><img class="card-img-top" src="/static/products/small duffle bag.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="sec-info">
+                        <form action="buynow" method="post" id="form">
+                        {% csrf_token %}
+
+                            <a>Under armour small bag</a>
+                            <div>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="far fa-star"></span>
+                            </div>
+                            <p>฿ 1999</p>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="sec-items">
+                    <div class="sec-img">
+                        <div class="sec-img-box">
+                            <a href="shoes"><img class="card-img-top" src="/static/products/ua shoes.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="sec-info">
+                        <form action="buynow" method="post" id="form">
+                        {% csrf_token %}
+
+                            <a>Under armour running</a>
+                            <div>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="far fa-star"></span>
+                                <span class="far fa-star"></span>
+                            </div>
+                            <p>฿ 3999</p>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="sec">
+        <footer id="ft">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-items">
+                        <div class="footer-img">
+                            <a target="_blank"><h2>Facebook</h2></a>
+                            <img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+                        </div>
+                    </div>
+                    <div class="footer-items">
+                        <div class="footer-img">
+                            <a target="_blank"><h2>Twitter</h2></a>
+                            <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDh8fHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="">
+                        </div>
+                    </div>
+                    <div class="footer-items">
+                        <div class="footer-img">
+                            <a target="_blank"><h2>Instagram</h2></a>
+                            <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGZhY2Vib29rfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="">
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="footer-items">
+                        <div class="footer-img">
+                            <a target="_blank"><h2>Line</h2></a>
+                            <img src="https://images.unsplash.com/photo-1611746872915-64382b5c76da?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+
+</body>
+</html>
